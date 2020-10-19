@@ -121,8 +121,10 @@ It's enough to make this function work with the
 'persons' array above. You don't have to consider or defend
 against any other type of names. */
 const findByFirstName = (firstname) => {
-  const foundPerson = persons.filter(person => person.name.includes(firstname))
-  foundPersonNames = foundPerson.map(found => found.name)
+  const foundPerson = persons.filter((person) =>
+    person.name.includes(firstname)
+  );
+  foundPersonNames = foundPerson.map((found) => found.name);
   return foundPersonNames;
 };
 /*
@@ -131,10 +133,10 @@ Age should be an integer.
 findPersonAge("Teuvo Testaaja") returns 31
 */
 const findPersonAge = (name) => {
-  let found = persons.filter(person => person.name === name)
-  const currentDate = new Date()
-  const difference = (currentDate - found[0].dateOfBirth)
-  const age = Math.floor(difference/31557600000)
+  let found = persons.filter((person) => person.name === name);
+  const currentDate = new Date();
+  const difference = currentDate - found[0].dateOfBirth;
+  const age = Math.floor(difference / 31557600000);
   return age;
 };
 /*
@@ -144,15 +146,13 @@ Calculate the average age of all users in the persons array (full
 years)
 */
 const calculateAverageAge = () => {
-  const datesOfBirth = persons.map(person => person.dateOfBirth)
-  const getAges = datesOfBirth.map(date =>
-                                       Math.floor((new Date() - date)/31557600000)
+  const datesOfBirth = persons.map((person) => person.dateOfBirth);
+  const getAges = datesOfBirth.map((date) =>
+    Math.floor((new Date() - date) / 31557600000)
+  );
+  const sumOfAges = getAges.reduce((sum, age) => sum + age, 0);
+  const averageAge = Math.round(sumOfAges / getAges.length);
 
-
-  )
-  const sumOfAges = getAges.reduce((sum, age) => sum + age, 0)
-  const averageAge = Math.round(sumOfAges / getAges.length)
-  
   return averageAge;
 };
 /*
@@ -207,5 +207,3 @@ console.log(
 console.log("Calculate Person <name> age", findPersonAge("Teuvo Testaaja"));
 console.log("The average age of all persons", calculateAverageAge());
 /*console.log("Company profiles created", createCompanyProfiles()); */
-
-
